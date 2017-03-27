@@ -18,5 +18,5 @@ CUDA_VISIBLE_DEVICES=0,1
 for e in {1..30}
 do
 	START_FROM=$MODEL_DIR/$(printf 'model_%03d.t7' "$e")
-	th testonly.lua -task $TASK $OPTION_TEST $OPTIOIN_MODEL -data $DB_NAME -startFrom $START_FROM
+	th testonly.lua -task $TASK $OPTION_TEST $OPTION_MODEL -data $DB_NAME -startFrom $START_FROM
 done
