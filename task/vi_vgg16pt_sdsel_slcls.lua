@@ -95,19 +95,19 @@ function task:setInputStat(  )
 end
 function task:getFunctionTrain(  )
 	return
-		function( x ) self:changeModelTrain( x ) end,
+		function( x ) return self:changeModelTrain( x ) end,
 		function(  ) return self:getBatchTrain(  ) end,
 		function( x, y ) return self:evalBatch( x, y ) end
 end
 function task:getFunctionVal(  )
 	return
-		function( x ) self:changeModelVal( x ) end,
+		function( x ) return self:changeModelVal( x ) end,
 		function( i ) return self:getBatchVal( i ) end,
 		function( x, y ) return self:evalBatch( x, y ) end
 end
 function task:getFunctionTest(  )
 	return
-		function( x ) self:changeModelTest( x ) end,
+		function( x ) return self:changeModelTest( x ) end,
 		function( i ) return self:getQuery( i ) end,
 		function( x ) return self:aggregateAnswers( x ) end,
 		function( x, y ) return self:evaluate( x, y ) end
@@ -446,6 +446,7 @@ function task:changeModelTrain( model )
 		module.modules[ 1 ].modules[ #module.modules[ 1 ] ].constant_scalar = 1 - weiTemporal
 		module.modules[ 2 ].modules[ #module.modules[ 2 ] ].constant_scalar = weiTemporal
 	end
+    return model
 end
 function task:changeModelVal( model )
 	local numGpu = self.opt.numGpu
@@ -471,9 +472,10 @@ function task:changeModelVal( model )
 		module.modules[ 1 ].modules[ #module.modules[ 1 ] ].constant_scalar = 1 - weiTemporal
 		module.modules[ 2 ].modules[ #module.modules[ 2 ] ].constant_scalar = weiTemporal
 	end
+    return model
 end
 function task:changeModelTest( model )
-	self:changeModelVal( model )
+	return self:changeModelVal( model )
 end
 function task:getBatchTrain(  )
 	local batchSize = self.opt.batchSize

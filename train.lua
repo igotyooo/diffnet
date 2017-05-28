@@ -85,7 +85,7 @@ function train.trainBatch( inputsCpu, labelsCpu )
 	train.netTimer:reset(  )
 	train.inputs:resize( inputsCpu:size(  ) ):copy( inputsCpu )
 	train.labels:resize( labelsCpu:size(  ) ):copy( labelsCpu )
-	train.changeModel( train.model )
+	train.model = train.changeModel( train.model )
 	train.model:zeroGradParameters(  )
 	-- Forward pass.
 	cutorch.synchronize(  )

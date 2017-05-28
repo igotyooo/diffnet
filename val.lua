@@ -39,7 +39,7 @@ function val.val( epoch )
 	-- Do the job.
 	val.print( string.format( 'Validation epoch %d.', epoch ) )
 	cutorch.synchronize(  )
-	val.changeModel( val.model )
+	val.model = val.changeModel( val.model )
 	val.model:evaluate(  )
 	for b = 1, val.epochSize do
 		local s = ( b - 1 ) * val.batchSize + 1

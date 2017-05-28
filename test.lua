@@ -30,7 +30,7 @@ function test.test(  )
 	-- Do the job.
 	test.print( 'Test.' )
 	cutorch.synchronize(  )
-	test.changeModel( test.model )
+	test.model = test.changeModel( test.model )
 	test.model:evaluate(  )
 	for q = 1, test.numQuery do
 		test.donkeys:addjob(
