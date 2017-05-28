@@ -92,7 +92,10 @@ function test.concatenate( table1, table2 )
 			table1[ k ] = table1[ k ]:cat( v, 1 )
 		end
 	else
-		table1 = table2
+		table1 = {  }
+		for k, v in pairs( table2 ) do
+			table1[ k ] = v:clone(  )
+		end
 	end
 	return table1
 end
